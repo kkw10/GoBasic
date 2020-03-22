@@ -16,6 +16,10 @@ type LinkedList struct {
 	Tail *Node
 }
 
+func (l *LinkedList) IsEmpty() bool {
+	return l.Root == nil
+} 
+
 func (l *LinkedList) AddNode(val int) {
 	if l.Root == nil {
 		l.Root = &Node{Val: val}
@@ -32,7 +36,11 @@ func (l *LinkedList) AddNode(val int) {
 func (l *LinkedList) RemoveNode(node *Node) {
 	if node == l.Root {
 		l.Root = l.Root.Next
-		l.Root.Prev = nil
+
+		if l.Root != nil {
+			l.Root.Prev = nil
+		}
+
 		node.Next = nil
 		return
 	}
@@ -52,6 +60,24 @@ func (l *LinkedList) RemoveNode(node *Node) {
 	node.Next = nil
 }
 
+func (l *LinkedList) ReturnLastValue() int {
+	if l.Tail != nil { return l.Tail.Val }
+	return 0
+}
+func (l *LinkedList) ReturnFirstValue() int {
+	if l.Root != nil { return l.Root.Val }
+	return 0
+}
+
+func (l *LinkedList) PopLastValue() {
+	if l.Tail == nil { return }
+	l.RemoveNode(l.Tail)
+}
+func (l *LinkedList) PopFirstValue() {
+	if l.Root == nil { return }
+	l.RemoveNode(l.Root)
+}
+
 func (l *LinkedList) PrintNodes() {
 	node := l.Root
 	for node.Next != nil {
@@ -61,7 +87,6 @@ func (l *LinkedList) PrintNodes() {
 
 	fmt.Printf("%d\n", node.Val)
 }
-
 func (l *LinkedList) PrintRevers() {
 	node := l.Tail
 
