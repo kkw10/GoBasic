@@ -51,3 +51,17 @@ func RecursivDFS(node *TreeNode) {
 	}
 }
 
+func (t *Tree) QueueBFS() {
+	queue := []*TreeNode{}
+	queue = append(queue, t.Root)
+
+	for len(queue) > 0 {
+		var first *TreeNode
+		first, queue = queue[0], queue[1:]
+
+		fmt.Printf("%d => ", first.Val)
+		for i := 0; i < len(first.Childs); i++ {
+			queue = append(queue, first.Childs[i])
+		}
+	}
+}

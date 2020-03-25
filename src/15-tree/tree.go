@@ -28,4 +28,7 @@ func main() {
 	fmt.Println()
 
 	tree.StackDFS()
+	fmt.Println()
+
+	tree.QueueBFS()
 }
