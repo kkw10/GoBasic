@@ -2,11 +2,11 @@ package data_structure
 
 import "fmt"
 
-type Heap struct {
+type MaxHeap struct {
 	list []int
 }
 
-func (h *Heap) Push(v int) {
+func (h *MaxHeap) Push(v int) {
 	h.list = append(h.list, v)
 
 	idx := len(h.list) - 1
@@ -26,7 +26,7 @@ func (h *Heap) Push(v int) {
 	}
 }
 
-func (h *Heap) Pop() int {
+func (h *MaxHeap) Pop() int {
 	if len(h.list) == 0 {
 		return 0
 	}
@@ -34,6 +34,10 @@ func (h *Heap) Pop() int {
 	first := h.list[0]
 	last := h.list[len(h.list) - 1]
 	h.list = h.list[:len(h.list) - 1]
+
+	if len(h.list) == 0 {
+		return first
+	}
 
 	h.list[0] = last
 
@@ -71,6 +75,6 @@ func (h *Heap) Pop() int {
 	return first
 }
 
-func (h *Heap) Print() {
+func (h *MaxHeap) Print() {
 	fmt.Println(h.list)
 }

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	h := &data_structure.Heap{}
+	h := &data_structure.MaxHeap{}
 
 	h.Push(2)
 	h.Push(5)
